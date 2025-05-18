@@ -2,6 +2,8 @@
 # !pip install torch
 # !pip install huggingface_hub[hf_xet]
 
+# 7. Autoregressive Text Generation
+
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
