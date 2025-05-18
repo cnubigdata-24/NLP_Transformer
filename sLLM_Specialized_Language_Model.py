@@ -25,7 +25,7 @@ for name, path in models.items():
         probs = torch.softmax(logits[0, mask_index], dim=-1)
         top_k = torch.topk(probs, 5, dim=-1)
 
-    print(f"\n🔍 Top-5 predictions for {name}")
+    print(f"\nTop-5 predictions for {name}")
     for i, (token_id, score) in enumerate(zip(top_k.indices[0], top_k.values[0])):
         token = tokenizer.decode([token_id])
         print(f"{i+1}. {token.strip():<20} | P = {score.item():.4f}")
