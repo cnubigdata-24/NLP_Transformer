@@ -1,5 +1,7 @@
 # pip install transformers torch sentencepiece protobuf
 
+# 8. Generative Q&A
+
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 import torch
 import os
