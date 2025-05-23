@@ -19,9 +19,25 @@ print(dataset["train"][0])
 
 # Test 3 ##########################################################################
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
+import torch.nn.functional as F
+
 model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased")
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
-inputs = tokenizer("I love Hugging Face!", return_tensors="pt")
+text = "I love Hugging Face!"
+
+tokens = tokenizer.tokenize(text)
+print("> Tokenized Words:", tokens)
+
+inputs = tokenizer(text, return_tensors="pt")
+print("> Token IDs:", inputs["input_ids"])
+print("> Attention Mask:", inputs["attention_mask"])
+
+tokens_from_ids = tokenizer.convert_ids_to_tokens(inputs["input_ids"][0])
+print("> Tokens from IDs:", tokens_from_ids)
+
 outputs = model(**inputs)
-print(outputs)
+print("> Model Output:", outputs)
+
+probabilities = F.softmax(outputs.logits, dim=1)
+print(probabilities)
