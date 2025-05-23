@@ -127,7 +127,6 @@ print(f"Training loss: {training_result.training_loss:.4f}")
 eval_result = trainer.evaluate()
 print(f"Evaluation accuracy: {eval_result.get('eval_accuracy', 'N/A'):.3f}")
 
-# 파인튜닝 후 테스트
 print("\n" + "="*50)
 print("파인튜닝 후: 실제 금융 감정 분석 가능!")
 print("="*50)
@@ -149,13 +148,11 @@ for i, (before, after, text) in enumerate(zip(before_predictions, after_predicti
 
 print(f"\n총 {changes}/{len(test_examples)} 예측이 변경되었습니다")
 
-# Save model
 model.save_pretrained("./roberta-financial")
 tokenizer.save_pretrained("./roberta-financial")
 
 print("\n모델이 './roberta-financial'에 저장되었습니다!")
 
-# Summary
 print(f"\n=== 최종 요약 ===")
 print(f"학습 데이터: {len(train_dataset)}개")
 print(f"검증 데이터: {len(val_dataset)}개") 
