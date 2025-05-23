@@ -42,3 +42,38 @@ interface = gr.Interface(
 )
 
 interface.launch()
+
+
+
+import gradio as gr
+from transformers import pipeline
+from PIL import Image
+
+# Ensure all required libraries are installed
+try:
+    object_detector = pipeline("object-detection", model="facebook/detr-resnet-50")
+except Exception as e:
+    raise RuntimeError(f"Error loading Hugging Face model: {e}")
+
+def detect_objects(image):
+    try:
+        image = Image.fromarray(image)
+        detections = object_detector(image)
+        result = []
+        for detection in detections:
+            obj = detection['label']
+            score = detection['score']
+            box = detection['box']
+            result.append(f"{obj}: {score:.2f} (Box: {box})")
+        return "\n".join(result)
+    except Exception as e:
+        return f"Error during object detection: {e}"
+
+demo = gr.Interface(
+    fn=detect_objects,
+    inputs=gr.Image(type="numpy"),
+    outputs=gr.Textbox(label="Objects Detected")
+)
+
+if __name__ == "__main__":
+    demo.launch()
