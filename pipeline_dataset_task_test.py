@@ -129,3 +129,37 @@ summarizer(
     and a lack of well-educated engineers.
 """
 )
+
+# Translation
+# Test 11 ##########################################################################
+from transformers import pipeline
+
+translator = pipeline("translation", model="Helsinki-NLP/opus-mt-fr-en")
+translator("Ce cours est produit par Hugging Face.")
+
+# Image classification
+# Test 12 ##########################################################################
+from transformers import pipeline
+
+image_classifier = pipeline(
+    task="image-classification", model="google/vit-base-patch16-224"
+)
+result = image_classifier(
+    "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg"
+)
+print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
