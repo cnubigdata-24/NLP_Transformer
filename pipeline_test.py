@@ -1,4 +1,4 @@
-#pip install transformers
+# !pip install transformers torch
 
 from transformers import pipeline
 classifier = pipeline("sentiment-analysis")
