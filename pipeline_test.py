@@ -9,6 +9,9 @@ print(result)
 sentiment = pipeline("sentiment-analysis")
 print(sentiment("Hugging Face is amazing!"))
 
+
+# !pip install datasets
+
 from datasets import load_dataset
 dataset = load_dataset("imdb")
 print(dataset["train"][0])
