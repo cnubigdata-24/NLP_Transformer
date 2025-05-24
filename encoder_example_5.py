@@ -26,7 +26,7 @@ print("BERT 기본 모델 파라미터 동결 완료")
 
 dataset = load_dataset("imdb")
 train_data = dataset["train"].shuffle(seed=42).select(range(300))
-test_data = dataset["test"].shuffle(seed=42).select(range(50))
+test_data = dataset["test"].shuffle(seed=42).select(range(20))
 
 # Extract feature vectors from BERT
 def extract_features(texts, labels):
