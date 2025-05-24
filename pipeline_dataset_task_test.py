@@ -11,7 +11,7 @@ sentiment = pipeline("sentiment-analysis")
 print(sentiment("Hugging Face is amazing!"))
 
 # Test 2 ##########################################################################
-# !pip install datasets
+# !pip install datasets==2.17.0 fsspec==2023.6.0
 
 from datasets import load_dataset
 dataset = load_dataset("imdb")
