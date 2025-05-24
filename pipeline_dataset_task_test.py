@@ -10,12 +10,14 @@ print(result)
 sentiment = pipeline("sentiment-analysis")
 print(sentiment("Hugging Face is amazing!"))
 
+
 # Test 2 ##########################################################################
 # !pip install datasets==2.17.0 fsspec==2023.6.0
 
 from datasets import load_dataset
 dataset = load_dataset("imdb")
 print(dataset["train"][0])
+
 
 # Test 3 ##########################################################################
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -42,6 +44,7 @@ print("> Model Output:", outputs)
 probabilities = F.softmax(outputs.logits, dim=1)
 print(probabilities)
 
+
 # Zero-shot classification
 # Test 4 ##########################################################################
 from transformers import pipeline
@@ -60,6 +63,7 @@ from transformers import pipeline
 generator = pipeline("text-generation")
 print(generator("In this course, we will teach you how to"))
 
+
 # Using any model from the Hub in a pipeline
 # Test 6 ##########################################################################
 from transformers import pipeline
@@ -70,6 +74,7 @@ generator(
     max_length=30,
     num_return_sequences=2,
 )
+
 
 # Mask filling
 # Test 7 ##########################################################################
@@ -86,6 +91,7 @@ from transformers import pipeline
 ner = pipeline("ner", grouped_entities=True)
 ner("My name is Sylvain and I work at Hugging Face in Brooklyn.")
 
+
 # Question answering
 # Test 9 ##########################################################################
 from transformers import pipeline
@@ -95,6 +101,7 @@ question_answerer(
     question="Where do I work?",
     context="My name is Sylvain and I work at Hugging Face in Brooklyn",
 )
+
 
 # Summarization
 # Test 10 ##########################################################################
@@ -124,12 +131,14 @@ summarizer(
 """
 )
 
+
 # Translation
 # Test 11 ##########################################################################
 from transformers import pipeline
 
 translator = pipeline("translation", model="Helsinki-NLP/opus-mt-fr-en")
 translator("Ce cours est produit par Hugging Face.")
+
 
 # Image classification
 # Test 12 ##########################################################################
