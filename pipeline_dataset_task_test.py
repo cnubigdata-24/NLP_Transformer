@@ -59,7 +59,6 @@ from transformers import pipeline
 
 generator = pipeline("text-generation")
 generator("In this course, we will teach you how to")
-Copied
 [{'generated_text': 'In this course, we will teach you how to understand and use '
                     'data flow and data interchange when handling user data. We '
                     'will be working with one or more of the most commonly used '
