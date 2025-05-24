@@ -20,7 +20,7 @@ label_map = {
     6: "Society"
 }
 
-# Step 1: Load subset of KLUE YNAT dataset
+# Load subset of KLUE YNAT dataset
 dataset = load_dataset("klue", "ynat", split={
     "train": "train[:100]",
     "validation": "validation[:50]"
@@ -29,17 +29,17 @@ dataset = load_dataset("klue", "ynat", split={
 print(dataset["train"][0])
 print(dataset["train"].column_names)
 
-# Step 2: Initialize tokenizer and model
+# Initialize tokenizer and model
 tokenizer = AutoTokenizer.from_pretrained("klue/bert-base")
 model = AutoModelForSequenceClassification.from_pretrained("klue/bert-base", num_labels=7)
 
-# Step 3: Preprocess the dataset
+# Preprocess the dataset
 def preprocess_function(examples):
     return tokenizer(examples["title"], truncation=True, padding="max_length", max_length=64)
 
 encoded_dataset = dataset.map(preprocess_function, batched=True)
 
-# Step 4: Define metrics
+# Define metrics
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
     predictions = np.argmax(logits, axis=1)
@@ -52,7 +52,6 @@ def compute_metrics(eval_pred):
         "f1": f1,
     }
 
-# Step 5: Define training arguments
 training_args = TrainingArguments(
     output_dir="./results",
     num_train_epochs=1,
@@ -64,7 +63,7 @@ training_args = TrainingArguments(
     learning_rate=5e-5,
 )
 
-# Step 6: Define Trainer
+# Define Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
@@ -74,11 +73,10 @@ trainer = Trainer(
     compute_metrics=compute_metrics
 )
 
-# Step 7: Train model
+# Train model
 trainer.train()
 trainer.save_model("./results")
 
-# Step 8: Predict and print results
 predictions = trainer.predict(encoded_dataset["validation"])
 logits = predictions.predictions
 labels = predictions.label_ids
@@ -90,7 +88,6 @@ for i in range(10):
     true_label = labels[i]
     print(f"[{i+1}] Predicted: {pred_label} ({label_map[pred_label]}), Actual: {true_label} ({label_map[true_label]})")
 
-# Step 9: Print evaluation metrics
 precision, recall, f1, _ = precision_recall_fscore_support(labels, predicted, average="weighted")
 acc = accuracy_score(labels, predicted)
 print("\n=== Evaluation Metrics ===")
