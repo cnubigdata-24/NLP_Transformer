@@ -1,7 +1,7 @@
 # !pip install -U transformers
 # !pip install --upgrade datasets
 
-# BERT Example using Feature Extraction + Fine Tuning
+# BERT Example using Feature Extraction
 from transformers import AutoTokenizer, AutoModel
 from datasets import load_dataset
 import torch
