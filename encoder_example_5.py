@@ -1,5 +1,5 @@
-!pip install -U transformers
-!pip install --upgrade datasets
+# !pip install -U transformers
+# !pip install --upgrade datasets
 
 # BERT Example using Feature Extraction + Fine Tuning
 from transformers import AutoTokenizer, AutoModel
