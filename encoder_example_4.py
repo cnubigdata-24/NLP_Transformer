@@ -1,4 +1,7 @@
 # !pip install sentence-transformers gradio
+
+# Example 1 ####################################################################################################
+
 import gradio as gr
 from sentence_transformers import SentenceTransformer, util
 
@@ -44,7 +47,7 @@ interface = gr.Interface(
 interface.launch()
 
 
-
+# Example 2 ####################################################################################################
 import gradio as gr
 from transformers import pipeline
 from PIL import Image
