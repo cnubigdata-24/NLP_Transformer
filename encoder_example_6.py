@@ -1,7 +1,6 @@
 # !pip install torch transformers scikit-learn numpy
 
-# Adapter Layer
-
+# Example: Adapter Layer
 import torch
 import torch.nn as nn
 import torch.optim as optim
